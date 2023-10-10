@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact Update</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #512b58; /* Purple background for the entire page */
+            margin: 20px 0 0; /* Add 20px top margin */
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .postcard {
+            background-color: #fff; /* White background for the form */
+            color: #000; /* Text color for the form */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: left; /* Align attributes to the left */
+            position: relative;
+            overflow: hidden;
+            animation: slide-up 0.5s ease-in-out;
+        }
+
+        @keyframes slide-up {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center; /* Center the "Contact Update" heading */
+        }
+
+        form {
+            text-align: left; /* Align attributes to the left */
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border-color: #ff6600;
+        }
+
+        input[type="submit"] {
+            background-color: #ff6600;
+            color: #fff;
+            font-size: 18px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <div class="postcard">
+        <h1>Contact Update</h1>
+        <form action="/updateContact/{id}" method="post" th:object="${contact}" th:action="@{/updateContact/{id}(id=${contact.id})}">
+            <label for="first_Name">First Name:</label>
+            <input type="text" id="first_Name" name="first_Name" th:field="*{first_Name}" placeholder="Enter First Name" required>
+            
+            <label for="last_Name">Last Name:</label>
+            <input type="text" id="last_Name" name="last_Name" th:field="*{last_Name}" placeholder="Enter Last Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:field="*{email}" placeholder="Enter Your Email" required>
+            
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" th:field="*{phone}" placeholder="Enter Phone Number" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" th:field="*{city}" placeholder="Enter City" required>
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" th:field="*{country}" placeholder="Enter Country" required>
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</body>
+</html>
